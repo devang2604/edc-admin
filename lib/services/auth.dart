@@ -1,16 +1,23 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:vp_admin/packages/flutter_login/flutter_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:vp_admin/services/database.dart';
 
 class AuthServices {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final DatabaseService _db = DatabaseService();
 
   // sign in with email & password
   Future<String?> signInWithEmailAndPassword(LoginData data) async {
     try {
-      await _auth.signInWithEmailAndPassword(
-          email: data.name, password: data.password);
-      return null;
+      //Check if user is admin
+      if (await _db.isAdmin(data.name)) {
+        await _auth.signInWithEmailAndPassword(
+            email: data.name, password: data.password);
+        return null;
+      } else {
+        return "You are not an admin";
+      }
     } on FirebaseAuthException catch (e) {
       switch (e.code) {
         case "invalid-email":
