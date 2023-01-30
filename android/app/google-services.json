@@ -38,6 +38,13 @@
             {
               "client_id": "588172701499-o8n94on23n2ql8l9t119fks7n505l5mg.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "588172701499-o633bkvppf9v1g5voe5h07btfapsrm7s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.vpAdmin"
+              }
             }
           ]
         }
@@ -75,6 +82,13 @@
             {
               "client_id": "588172701499-o8n94on23n2ql8l9t119fks7n505l5mg.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "588172701499-o633bkvppf9v1g5voe5h07btfapsrm7s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.vpAdmin"
+              }
             }
           ]
         }
@@ -104,6 +118,13 @@
             {
               "client_id": "588172701499-o8n94on23n2ql8l9t119fks7n505l5mg.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "588172701499-o633bkvppf9v1g5voe5h07btfapsrm7s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.vpAdmin"
+              }
             }
           ]
         }

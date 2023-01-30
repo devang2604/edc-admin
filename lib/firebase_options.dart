@@ -26,10 +26,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -59,5 +56,17 @@ class DefaultFirebaseOptions {
     projectId: 'vishwapreneur-1767c',
     databaseURL: 'https://vishwapreneur-1767c.firebaseio.com',
     storageBucket: 'vishwapreneur-1767c.appspot.com',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyD0UJBaz2fhpDh68wNTvv9aCDHY4r2wxiM',
+    appId: '1:588172701499:ios:9fa48bb68fa019e36cd11e',
+    messagingSenderId: '588172701499',
+    projectId: 'vishwapreneur-1767c',
+    databaseURL: 'https://vishwapreneur-1767c.firebaseio.com',
+    storageBucket: 'vishwapreneur-1767c.appspot.com',
+    androidClientId: '588172701499-rjvvgfj7kvkvb453e07qp0akdgkmcqg6.apps.googleusercontent.com',
+    iosClientId: '588172701499-vmimrt1puv4htc9usb3llfcol32gt9c8.apps.googleusercontent.com',
+    iosBundleId: 'in.vishwapreneur.admin',
   );
 }
