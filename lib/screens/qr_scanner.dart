@@ -1,9 +1,9 @@
 import 'dart:developer';
 import 'dart:io';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:vp_admin/constants.dart';
+import 'package:vp_admin/services/database.dart';
 
 class QRScanner extends StatefulWidget {
   const QRScanner({Key? key}) : super(key: key);
@@ -31,6 +31,7 @@ class _QRScannerState extends State<QRScanner> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
@@ -144,20 +145,47 @@ class _QRScannerState extends State<QRScanner> {
       child: Column(
         children: [
           Text(
-            'Barcode Type: ${describeEnum(result!.format)}',
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 10),
-          Text(
             'Data: ${result!.code}',
             style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
           ),
+          const SizedBox(height: 10),
+          //Verify ticket id
+          FutureBuilder<bool>(
+            future: DatabaseService().verifyTicketId(result!.code),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                if (snapshot.data!) {
+                  //Show gif
+                  return Container(
+                    height: 200,
+                    width: 200,
+                    child: Image.asset('assets/gifs/success.gif'),
+                  );
+                } else {
+                  return const Text(
+                    'Ticket Not Verified',
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  );
+                }
+              } else {
+                return const Text(
+                  'Verifying Ticket...',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                );
+              }
+            },
+          )
         ],
       ),
     );

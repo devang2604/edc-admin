@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+import 'package:vp_admin/constants.dart';
 import 'package:vp_admin/screens/add_people.dart';
 import 'package:vp_admin/screens/admitted_people.dart';
 import 'package:vp_admin/screens/home_screen.dart';
@@ -55,28 +56,28 @@ class _NavigationState extends State<Navigation> {
           SalomonBottomBarItem(
             icon: const Icon(Icons.home),
             title: const Text("Home"),
-            selectedColor: Colors.teal,
+            selectedColor: Colors.blueAccent,
           ),
           //Add People
 
           SalomonBottomBarItem(
             icon: const Icon(CupertinoIcons.add_circled_solid),
             title: const Text("Add People"),
-            selectedColor: Colors.teal,
+            selectedColor: Colors.blueAccent,
           ),
 
           ///Admitted Users
           SalomonBottomBarItem(
             icon: const Icon(CupertinoIcons.group_solid),
             title: const Text("Admitted Users"),
-            selectedColor: Colors.teal,
+            selectedColor: Colors.blueAccent,
           ),
 
           /// Notifications
           SalomonBottomBarItem(
             icon: const Icon(CupertinoIcons.bell_fill),
             title: const Text("Notifications"),
-            selectedColor: Colors.teal,
+            selectedColor: Colors.blueAccent,
           ),
         ],
       ),

@@ -1,49 +1,84 @@
 {
   "project_info": {
-    "project_number": "588172701499",
-    "firebase_url": "https://vishwapreneur-1767c.firebaseio.com",
-    "project_id": "vishwapreneur-1767c",
-    "storage_bucket": "vishwapreneur-1767c.appspot.com"
+    "project_number": "508454396140",
+    "project_id": "edc-viit",
+    "storage_bucket": "edc-viit.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:588172701499:android:897261535da9351a6cd11e",
+        "mobilesdk_app_id": "1:508454396140:android:939f4aa0c9726e944185c9",
         "android_client_info": {
-          "package_name": "com.edcviit.vishwapreneur"
+          "package_name": "com.edcviit.edcviit"
         }
       },
       "oauth_client": [
         {
-          "client_id": "588172701499-rjvvgfj7kvkvb453e07qp0akdgkmcqg6.apps.googleusercontent.com",
+          "client_id": "508454396140-ikin3l2iqrvm30ok60gsdtvsbpp0oh29.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBir7G4_f00TZVTgdTO_l2OIbl0mE5zbMY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "508454396140-ikin3l2iqrvm30ok60gsdtvsbpp0oh29.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "508454396140-eg1pmospcld058mie3bpn11r1oe0d0b8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.edcviit.edcviit"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:508454396140:android:6d97369a736b17aa4185c9",
+        "android_client_info": {
+          "package_name": "com.edcviit.edcvit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "508454396140-ubptjffuhbatqtnsikm6poqikosrvfqj.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.edcviit.vishwapreneur",
+            "package_name": "com.edcviit.edcvit",
             "certificate_hash": "6594e2457738eedbca47b79657536e0d15c44448"
           }
         },
         {
-          "client_id": "588172701499-o8n94on23n2ql8l9t119fks7n505l5mg.apps.googleusercontent.com",
+          "client_id": "508454396140-ikin3l2iqrvm30ok60gsdtvsbpp0oh29.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDvy_-voC4ZsICsFQop_xVGuDiyTK_Wonk"
+          "current_key": "AIzaSyBir7G4_f00TZVTgdTO_l2OIbl0mE5zbMY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "588172701499-o8n94on23n2ql8l9t119fks7n505l5mg.apps.googleusercontent.com",
+              "client_id": "508454396140-ikin3l2iqrvm30ok60gsdtvsbpp0oh29.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "588172701499-o633bkvppf9v1g5voe5h07btfapsrm7s.apps.googleusercontent.com",
+              "client_id": "508454396140-eg1pmospcld058mie3bpn11r1oe0d0b8.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.vpAdmin"
+                "bundle_id": "com.edcviit.edcviit"
               }
             }
           ]
@@ -52,78 +87,34 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:588172701499:android:aca7ae5f541f0b39",
-        "android_client_info": {
-          "package_name": "com.vishwapreneur.www.vishwapreneur"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "588172701499-s4drmo49410aeb6b6m99bg94jp6i9quc.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.vishwapreneur.www.vishwapreneur",
-            "certificate_hash": "6bb9350b74eac66ac73391b58c12edaeff9d850d"
-          }
-        },
-        {
-          "client_id": "588172701499-o8n94on23n2ql8l9t119fks7n505l5mg.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDvy_-voC4ZsICsFQop_xVGuDiyTK_Wonk"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "588172701499-o8n94on23n2ql8l9t119fks7n505l5mg.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "588172701499-o633bkvppf9v1g5voe5h07btfapsrm7s.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.vpAdmin"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:588172701499:android:28c8faf04a70d0b06cd11e",
+        "mobilesdk_app_id": "1:508454396140:android:afe5aee1cde5cfb84185c9",
         "android_client_info": {
           "package_name": "in.vishwapreneur.admin"
         }
       },
       "oauth_client": [
         {
-          "client_id": "588172701499-o8n94on23n2ql8l9t119fks7n505l5mg.apps.googleusercontent.com",
+          "client_id": "508454396140-ikin3l2iqrvm30ok60gsdtvsbpp0oh29.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDvy_-voC4ZsICsFQop_xVGuDiyTK_Wonk"
+          "current_key": "AIzaSyBir7G4_f00TZVTgdTO_l2OIbl0mE5zbMY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "588172701499-o8n94on23n2ql8l9t119fks7n505l5mg.apps.googleusercontent.com",
+              "client_id": "508454396140-ikin3l2iqrvm30ok60gsdtvsbpp0oh29.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "588172701499-o633bkvppf9v1g5voe5h07btfapsrm7s.apps.googleusercontent.com",
+              "client_id": "508454396140-eg1pmospcld058mie3bpn11r1oe0d0b8.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.vpAdmin"
+                "bundle_id": "com.edcviit.edcviit"
               }
             }
           ]

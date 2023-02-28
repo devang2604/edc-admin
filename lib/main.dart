@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:vp_admin/constants.dart';
 import 'package:vp_admin/firebase_options.dart';
 import 'package:vp_admin/screens/qr_scanner.dart';
 import 'package:vp_admin/wrapper.dart';
@@ -19,7 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Vishwapreneur',
+        title: 'Vishwapreneur Admin',
         theme: ThemeData(
           brightness: Brightness.dark,
           useMaterial3: true,
@@ -30,6 +29,7 @@ class MyApp extends StatelessWidget {
         routes: {
           '/home': (context) => const Wrapper(),
           '/scan': (context) => const QRScanner(),
+          '/wrapper': (context) => const Wrapper(),
         }
         // navigatorKey: navigatorKey,
         );
