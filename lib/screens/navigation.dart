@@ -6,6 +6,7 @@ import 'package:vp_admin/screens/add_people.dart';
 import 'package:vp_admin/screens/admitted_people.dart';
 import 'package:vp_admin/screens/home_screen.dart';
 import 'package:vp_admin/screens/notifications.dart';
+import 'package:vp_admin/screens/registration.dart';
 
 class Navigation extends StatefulWidget {
   const Navigation({super.key});
@@ -38,8 +39,8 @@ class _NavigationState extends State<Navigation> {
         children: const [
           HomeScreen(),
           AddPeopleScrenn(),
-          AdmittedPeopleScreen(),
-          NotificationScreen()
+          RegiterationScreen(),
+          // NotificationScreen()
         ],
       ),
       bottomNavigationBar: SalomonBottomBar(
@@ -68,17 +69,17 @@ class _NavigationState extends State<Navigation> {
 
           ///Admitted Users
           SalomonBottomBarItem(
-            icon: const Icon(CupertinoIcons.group_solid),
-            title: const Text("Admitted Users"),
+            icon: const Icon(CupertinoIcons.person),
+            title: const Text("Registeration"),
             selectedColor: Colors.blueAccent,
           ),
 
           /// Notifications
-          SalomonBottomBarItem(
-            icon: const Icon(CupertinoIcons.bell_fill),
-            title: const Text("Notifications"),
-            selectedColor: Colors.blueAccent,
-          ),
+          // SalomonBottomBarItem(
+          //   icon: const Icon(CupertinoIcons.bell_fill),
+          //   title: const Text("Notifications"),
+          //   selectedColor: Colors.blueAccent,
+          // ),
         ],
       ),
     );

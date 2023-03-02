@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="in.vishwapreneur.admin">
    <application
-        android:label="vp_admin"
+        android:label="VP Admin"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

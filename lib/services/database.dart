@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:vp_admin/models/notification_model.dart';
+import 'package:vp_admin/models/ticket_data.dart';
 import 'package:vp_admin/models/user_data.dart';
 
 class DatabaseService {
@@ -55,11 +56,26 @@ class DatabaseService {
   }
 
   static Future addUser(UserData userData) async {
-    return admittedUserCollection.add(userData.toMap());
+    return await admittedUserCollection.add(userData.toMap());
+  }
+
+  static Future addTicketToAdmittedUser(TicketData ticketData) async {
+    UserData userData = UserData(
+      id: ticketData.ticketId,
+      firstName: ticketData.name,
+      email: ticketData.email,
+      phone: ticketData.phone,
+      type: ticketData.ticketType,
+    );
+    return await admittedUserCollection.doc(userData.id).set(userData.toMap());
   }
 
   Future<void> updateFlag(uid, bool flag) async {
-    await admittedUserCollection.doc(uid).update({'flag': flag});
+    await admittedUserCollection.doc(uid).update(
+      {
+        'flag': flag,
+      },
+    );
   }
 
   Future<bool> verifyTicketId(String? code) async {
@@ -77,9 +93,42 @@ class DatabaseService {
   Future getTicketData(String id) async {
     try {
       final snapshot = await registeredUserCollection.doc(id).get();
-      return UserData.fromMap(snapshot.data() as Map<String, dynamic>, id);
+      return TicketData.fromMap(snapshot.data() as Map<String, dynamic>, id);
     } catch (e) {
       print(e.toString());
+      return null;
+    }
+  }
+
+  Future searchByEmail(String id) async {
+    try {
+      final snapshot =
+          await registeredUserCollection.where('email', isEqualTo: id).get();
+      return TicketData.fromMap(
+          snapshot.docs.first.data() as Map<String, dynamic>, id);
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+  static Future<String?> addTicket(TicketData ticketData) async {
+    try {
+      //Get latest ticket id and increment it by 1
+      final snapshot =
+          await registeredUserCollection.orderBy('created_at').get();
+      final lastTicket = snapshot.docs.last;
+      final lastTicketId = lastTicket.id;
+      final newTicketId = int.parse(lastTicketId) + 1;
+      ticketData.ticketId = newTicketId.toString();
+      ticketData.createdAt = Timestamp.now();
+      return registeredUserCollection
+          .doc(ticketData.ticketId)
+          .set(
+            ticketData.toMap(),
+          )
+          .then((value) => ticketData.ticketId);
+    } on FirebaseException catch (e) {
       return null;
     }
   }

@@ -50,4 +50,6 @@ class UserData {
       updatedAt: map['updatedAt'],
     );
   }
+
+  String get name => "$firstName $lastName";
 }
