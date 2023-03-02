@@ -51,11 +51,14 @@ class _QRScannerState extends State<QRScanner> {
                     //     'Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}')
                     _buildResultView()
                   else
-                    Center(
-                      child: const Text(
+                    const Center(
+                      child: Text(
                         'Scan a code',
                         style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
                       ),
                     ),
                 ],
@@ -148,7 +151,7 @@ class _QRScannerState extends State<QRScanner> {
       padding: const EdgeInsets.all(8.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Row(
             children: [
@@ -167,7 +170,8 @@ class _QRScannerState extends State<QRScanner> {
             ],
           ),
           Text(
-            'Code: ${result!.code}',
+            'Code Detected: ${result!.code}',
+            textAlign: TextAlign.center,
             style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
@@ -199,19 +203,70 @@ class _QRScannerState extends State<QRScanner> {
                       ),
                     ),
                     const SizedBox(width: 10),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: kViolet,
+                    FutureBuilder<bool>(
+                      future:
+                          DatabaseService().isUserAdmitted(ticketData.ticketId),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          final isAdmitted = snapshot.data!;
+                          if (isAdmitted) {
+                            return const Text(
+                              "User is admitted",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.green,
+                              ),
+                            );
+                          } else {
+                            return ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                minimumSize: const Size(200, 50),
+                              ),
+                              onPressed: () async {
+                                DatabaseService.addTicketToAdmittedUser(
+                                    ticketData);
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text("User added"),
+                                  ),
+                                );
+                                setState(() {});
+                              },
+                              child: const Text("Admit User"),
+                            );
+                          }
+                        } else {
+                          return const LinearProgressIndicator();
+                        }
+                      },
+                    )
+                  ],
+                );
+              } else if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else {
+                return Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Text(
+                      'Ticket Not Found',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.red,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
                       ),
-                      onPressed: () {},
-                      child: const Text('Confirm'),
+                    ),
+                    const SizedBox(height: 10),
+                    Image.asset(
+                      'assets/gifs/not-found.gif',
+                      height: 100,
+                      width: 100,
                     ),
                   ],
                 );
-              } else if (snapshot.hasError) {
-                return const Text('Error');
-              } else {
-                return const Text('Loading');
               }
             },
           )

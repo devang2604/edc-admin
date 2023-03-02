@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vp_admin/constants.dart';
 import 'package:vp_admin/models/ticket_data.dart';
 import 'package:vp_admin/models/user_data.dart';
 import 'package:vp_admin/services/auth.dart';
@@ -171,7 +172,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       padding: const EdgeInsets.all(10),
                       margin: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.3),
+                        color: Colors.white.withOpacity(0.1),
                         borderRadius:
                             const BorderRadius.all(Radius.circular(10)),
                       ),
@@ -197,24 +198,44 @@ class _HomeScreenState extends State<HomeScreen> {
                           const SizedBox(
                             height: 10,
                           ),
-                          ElevatedButton(
-                            onPressed: () async {
-                              // UserData userData = UserData(
-                              //   id: ticketData.ticketId,
-                              //   email: ticketData.email,
-                              //   phone: ticketData.phone,
-                              //   firstName: ticketData.name,
-                              // );
-                              DatabaseService.addTicketToAdmittedUser(
-                                  ticketData);
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text("User added"),
-                                ),
-                              );
+                          FutureBuilder<bool>(
+                            future: DatabaseService()
+                                .isUserAdmitted(ticketData.ticketId),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                final isAdmitted = snapshot.data!;
+                                if (isAdmitted) {
+                                  return const Text(
+                                    "User is admitted",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Colors.green,
+                                    ),
+                                  );
+                                } else {
+                                  return ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      minimumSize: const Size(200, 50),
+                                    ),
+                                    onPressed: () async {
+                                      DatabaseService.addTicketToAdmittedUser(
+                                          ticketData);
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        const SnackBar(
+                                          content: Text("User added"),
+                                        ),
+                                      );
+                                      setState(() {});
+                                    },
+                                    child: const Text("Admit User"),
+                                  );
+                                }
+                              } else {
+                                return const LinearProgressIndicator();
+                              }
                             },
-                            child: const Text("Admit User"),
-                          ),
+                          )
                         ],
                       ),
                     );
@@ -233,7 +254,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       padding: const EdgeInsets.all(10),
                       margin: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.3),
+                        color: Colors.white.withOpacity(0.1),
                         borderRadius:
                             const BorderRadius.all(Radius.circular(10)),
                       ),
@@ -259,24 +280,44 @@ class _HomeScreenState extends State<HomeScreen> {
                           const SizedBox(
                             height: 10,
                           ),
-                          ElevatedButton(
-                            onPressed: () async {
-                              // UserData userData = UserData(
-                              //   id: ticketData.ticketId,
-                              //   email: ticketData.email,
-                              //   phone: ticketData.phone,
-                              //   firstName: ticketData.name,
-                              // );
-                              DatabaseService.addTicketToAdmittedUser(
-                                  ticketData);
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text("User added"),
-                                ),
-                              );
+                          FutureBuilder<bool>(
+                            future: DatabaseService()
+                                .isUserAdmitted(ticketData.ticketId),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                final isAdmitted = snapshot.data!;
+                                if (isAdmitted) {
+                                  return const Text(
+                                    "User is admitted",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Colors.green,
+                                    ),
+                                  );
+                                } else {
+                                  return ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      minimumSize: const Size(200, 50),
+                                    ),
+                                    onPressed: () async {
+                                      DatabaseService.addTicketToAdmittedUser(
+                                          ticketData);
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        const SnackBar(
+                                          content: Text("User added"),
+                                        ),
+                                      );
+                                      setState(() {});
+                                    },
+                                    child: const Text("Admit User"),
+                                  );
+                                }
+                              } else {
+                                return const LinearProgressIndicator();
+                              }
                             },
-                            child: const Text("Admit User"),
-                          ),
+                          )
                         ],
                       ),
                     );

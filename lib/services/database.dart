@@ -66,6 +66,7 @@ class DatabaseService {
       email: ticketData.email,
       phone: ticketData.phone,
       type: ticketData.ticketType,
+      createdAt: ticketData.createdAt,
     );
     return await admittedUserCollection.doc(userData.id).set(userData.toMap());
   }
@@ -135,6 +136,16 @@ class DatabaseService {
           .then((value) => ticketData.ticketId);
     } on FirebaseException catch (e) {
       return null;
+    }
+  }
+
+  Future<bool> isUserAdmitted(String ticketId) async {
+    try {
+      final snapshot = await admittedUserCollection.doc(ticketId).get();
+      return snapshot.exists;
+    } catch (e) {
+      print(e.toString());
+      return false;
     }
   }
 }
