@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:vp_admin/constants.dart';
+import 'package:vp_admin/models/ticket_data.dart';
 import 'package:vp_admin/services/database.dart';
 
 class QRScanner extends StatefulWidget {
@@ -31,25 +32,32 @@ class _QRScannerState extends State<QRScanner> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      // backgroundColor: Coloes,/
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          Expanded(flex: 4, child: _buildQrView(context)),
+          Expanded(flex: 5, child: _buildQrView(context)),
           Expanded(
-            flex: 1,
-            child: FittedBox(
-              fit: BoxFit.contain,
+            flex: 2,
+            child: Container(
+              // margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+              color: Colors.white,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   if (result != null)
                     // Text(
                     //     'Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}')
                     _buildResultView()
                   else
-                    const Text('Scan a code'),
+                    Center(
+                      child: const Text(
+                        'Scan a code',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                    ),
                 ],
               ),
             ),
@@ -136,53 +144,74 @@ class _QRScannerState extends State<QRScanner> {
   }
 
   Widget _buildResultView() {
-    return Container(
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
-      ),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Row(
+            children: [
+              //Reset Button
+              IconButton(
+                onPressed: () {
+                  setState(() {
+                    result = null;
+                  });
+                },
+                icon: const Icon(
+                  Icons.refresh,
+                  color: Colors.black,
+                ),
+              ),
+            ],
+          ),
           Text(
-            'Data: ${result!.code}',
+            'Code: ${result!.code}',
             style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
+              color: Colors.black,
             ),
           ),
           const SizedBox(height: 10),
           //Verify ticket id
-          FutureBuilder<bool>(
+          FutureBuilder<TicketData?>(
             future: DatabaseService().verifyTicketId(result!.code),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                if (snapshot.data!) {
-                  //Show gif
-                  return Container(
-                    height: 200,
-                    width: 200,
-                    child: Image.asset('assets/gifs/success.gif'),
-                  );
-                } else {
-                  return const Text(
-                    'Ticket Not Verified',
-                    style: TextStyle(
-                      color: Colors.red,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+                TicketData ticketData = snapshot.data!;
+                //Show gif
+                return Row(
+                  children: [
+                    SizedBox(
+                      height: 100,
+                      width: 100,
+                      child: Image.asset('assets/gifs/success.gif'),
                     ),
-                  );
-                }
-              } else {
-                return const Text(
-                  'Verifying Ticket...',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
+                    const SizedBox(width: 10),
+                    const Text(
+                      'Ticket Verified',
+                      style: TextStyle(
+                        color: Colors.green,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: kViolet,
+                      ),
+                      onPressed: () {},
+                      child: const Text('Confirm'),
+                    ),
+                  ],
                 );
+              } else if (snapshot.hasError) {
+                return const Text('Error');
+              } else {
+                return const Text('Loading');
               }
             },
           )

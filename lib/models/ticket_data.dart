@@ -31,12 +31,11 @@ class TicketData {
 
   factory TicketData.fromMap(Map<String, dynamic> map, String ticketId) {
     return TicketData(
-      ticketId: ticketId,
-      ticketType: map['ticketType'],
-      email: map['email'],
-      phone: map['phone'].toString(),
-      name: map['name'],
-      createdAt: map['created_at'],
-    );
+        ticketId: ticketId,
+        ticketType: map['ticketType'],
+        email: map['email'],
+        phone: map['phone'].toString(),
+        name: map['name'],
+        createdAt: Timestamp.fromMillisecondsSinceEpoch(map['created_at']));
   }
 }

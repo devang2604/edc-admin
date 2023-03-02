@@ -78,19 +78,24 @@ class DatabaseService {
     );
   }
 
-  Future<bool> verifyTicketId(String? code) async {
+  Future<TicketData?> verifyTicketId(String? code) async {
     try {
-      if (code == null) return false;
+      if (code == null) return null;
       final snapshot = await registeredUserCollection.doc(code).get();
-      print("snapshot: ${snapshot.data()}");
-      return snapshot.exists;
+      if (snapshot.exists) {
+        return TicketData.fromMap(
+            snapshot.data() as Map<String, dynamic>, code);
+      } else {
+        return null;
+      }
     } catch (e) {
       print(e.toString());
-      return false;
+      return null;
     }
   }
 
   Future getTicketData(String id) async {
+    print("id: $id");
     try {
       final snapshot = await registeredUserCollection.doc(id).get();
       return TicketData.fromMap(snapshot.data() as Map<String, dynamic>, id);
