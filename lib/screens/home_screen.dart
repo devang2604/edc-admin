@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vp_admin/constants.dart';
 import 'package:vp_admin/models/ticket_data.dart';
-import 'package:vp_admin/models/user_data.dart';
 import 'package:vp_admin/services/auth.dart';
 import 'package:vp_admin/services/database.dart';
 
