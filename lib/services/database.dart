@@ -128,6 +128,13 @@ class DatabaseService {
       final newTicketId = int.parse(lastTicketId) + 1;
       ticketData.ticketId = newTicketId.toString();
       ticketData.createdAt = Timestamp.now();
+      FirebaseFirestore.instance
+          .collection("on_day_registration")
+          .doc(ticketData.ticketId)
+          .set(
+            ticketData.toMap(),
+          )
+          .then((value) => ticketData.ticketId);
       return registeredUserCollection
           .doc(ticketData.ticketId)
           .set(
