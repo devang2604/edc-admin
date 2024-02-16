@@ -22,28 +22,26 @@ class LoginScreen extends StatelessWidget {
           primaryColor: kViolet,
           cardTheme: const CardTheme(
             color: kPrimaryColor,
+
             // elevation: 0,
             // margin: const EdgeInsets.all(0),
           ),
           // accentColor: kSecondaryColor,
           // pageColorDark: kPrimaryColor,
-          titleStyle: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'BatmanForever',
-            // color: kYellow,
-            //Padding between the title and the logo
-            // letterSpacing: 2,
-            // color: Colors.white
-          ),
+          titleStyle: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'BatmanForever',
+              // color: kYellow,
+              //Padding between the title and the logo
+              // letterSpacing: 2,
+              // color: Colors.white
+              height: MediaQuery.of(context).size.height * 0.0001),
           logoWidth: 0.35,
         ),
         logo: const AssetImage('assets/app_logo.png'),
         onLogin: _auth.signInWithEmailAndPassword,
-        onSignup: (value) async {
-          //SignUp is disabled
-          return "SignUp is disabled from the admin panel";
-        },
+        onSignup: _auth.registerWithEmailAndPassword,
         onRecoverPassword: _auth.recoverPassword,
         // footer: "Designed and Developed by Anas Ansari",
         messages: LoginMessages(
