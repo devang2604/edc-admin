@@ -18,7 +18,7 @@ class _AdmittedPeopleScreenState extends State<AdmittedPeopleScreen> {
   void initState() {
     super.initState();
     _query = FirebaseFirestore.instance
-        .collection('admitted_users')
+        .collection('admitted_users_vp24')
         .orderBy('createdAt', descending: true)
         .withConverter<UserData>(
           fromFirestore: (snapshot, _) =>

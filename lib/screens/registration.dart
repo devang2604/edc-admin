@@ -40,7 +40,6 @@ class _RegiterationScreenState extends State<RegiterationScreen> {
                   children: [
                     InputTextField(
                       label: "Name",
-                      hint: "Viraj",
                       onChanged: (value) {
                         setState(() {
                           ticketData.name = value;
@@ -49,7 +48,6 @@ class _RegiterationScreenState extends State<RegiterationScreen> {
                     ),
                     InputTextField(
                       label: "Email",
-                      hint: "anas@gmail.com",
                       validator: Validators.validateEmail,
                       keyboardType: TextInputType.emailAddress,
                       onChanged: (value) {
@@ -60,7 +58,6 @@ class _RegiterationScreenState extends State<RegiterationScreen> {
                     ),
                     InputTextField(
                       label: "Phone",
-                      hint: "987654321",
                       keyboardType: TextInputType.phone,
                       validator: Validators.validatePhoneNumber,
                       onChanged: (value) {

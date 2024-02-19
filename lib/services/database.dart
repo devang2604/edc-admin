@@ -11,10 +11,10 @@ class DatabaseService {
       FirebaseFirestore.instance.collection('admins');
 
   static final CollectionReference admittedUserCollection =
-      FirebaseFirestore.instance.collection('admitted_users');
+      FirebaseFirestore.instance.collection('admitted_users_vp24');
 
   static final CollectionReference registeredUserCollection =
-      FirebaseFirestore.instance.collection('vp24_trial');
+      FirebaseFirestore.instance.collection('vp24_registrations');
 
   Future<bool> isAdmin(String email) async {
     try {

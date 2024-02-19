@@ -39,7 +39,7 @@ class _AddPeopleScrennState extends State<AddPeopleScrenn> {
                   children: [
                     InputTextField(
                       label: "First Name",
-                      hint: "Viraj",
+                      hint: "",
                       onChanged: (value) {
                         setState(() {
                           _userData.firstName = value;
@@ -48,7 +48,7 @@ class _AddPeopleScrennState extends State<AddPeopleScrenn> {
                     ),
                     InputTextField(
                       label: "Last Name",
-                      hint: "Padale",
+                      hint: "",
                       onChanged: (value) {
                         setState(() {
                           _userData.lastName = value;
@@ -57,7 +57,7 @@ class _AddPeopleScrennState extends State<AddPeopleScrenn> {
                     ),
                     InputTextField(
                       label: "Email",
-                      hint: "anas@gmail.com",
+                      hint: "",
                       validator: Validators.validateEmail,
                       keyboardType: TextInputType.emailAddress,
                       onChanged: (value) {
@@ -68,7 +68,7 @@ class _AddPeopleScrennState extends State<AddPeopleScrenn> {
                     ),
                     InputTextField(
                       label: "Phone",
-                      hint: "987654321",
+                      hint: "",
                       keyboardType: TextInputType.phone,
                       validator: Validators.validatePhoneNumber,
                       onChanged: (value) {

@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
               icon: const Icon(Icons.person),
               label: const Text('Logout'),
               style: TextButton.styleFrom(
-                primary: Colors.white,
+                foregroundColor: Colors.white,
               )),
         ],
       ),
