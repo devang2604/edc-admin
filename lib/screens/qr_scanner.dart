@@ -187,58 +187,56 @@ class _QRScannerState extends State<QRScanner> {
                 TicketData ticketData = snapshot.data!;
                 //Show gif
                 return SingleChildScrollView(
-                  child: Expanded(
-                    child: Column(
-                      children: [
-                        const SizedBox(width: 10),
-                        const Text(
-                          'Ticket Verified',
-                          style: TextStyle(
-                            color: Colors.green,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
+                  child: Column(
+                    children: [
+                      const SizedBox(width: 10),
+                      const Text(
+                        'Ticket Verified',
+                        style: TextStyle(
+                          color: Colors.green,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
                         ),
-                        const SizedBox(width: 10),
-                        FutureBuilder<bool>(
-                          future: DatabaseService()
-                              .isUserAdmitted(ticketData.ticketId),
-                          builder: (context, snapshot) {
-                            if (snapshot.hasData) {
-                              final isAdmitted = snapshot.data!;
-                              if (isAdmitted) {
-                                return const Text(
-                                  "User is already admitted",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: Colors.red,
-                                  ),
-                                );
-                              } else {
-                                return ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    minimumSize: const Size(200, 50),
-                                  ),
-                                  onPressed: () async {
-                                    DatabaseService.addTicketToAdmittedUser(
-                                        ticketData);
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
-                                        content: Text("User added"),
-                                      ),
-                                    );
-                                    setState(() {});
-                                  },
-                                  child: const Text("Admit User"),
-                                );
-                              }
+                      ),
+                      const SizedBox(width: 10),
+                      FutureBuilder<bool>(
+                        future: DatabaseService()
+                            .isUserAdmitted(ticketData.ticketId),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            final isAdmitted = snapshot.data!;
+                            if (isAdmitted) {
+                              return const Text(
+                                "User is already admitted",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.red,
+                                ),
+                              );
                             } else {
-                              return const LinearProgressIndicator();
+                              return ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  minimumSize: const Size(200, 50),
+                                ),
+                                onPressed: () async {
+                                  DatabaseService.addTicketToAdmittedUser(
+                                      ticketData);
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text("User added"),
+                                    ),
+                                  );
+                                  setState(() {});
+                                },
+                                child: const Text("Admit User"),
+                              );
                             }
-                          },
-                        )
-                      ],
-                    ),
+                          } else {
+                            return const LinearProgressIndicator();
+                          }
+                        },
+                      )
+                    ],
                   ),
                 );
               } else if (snapshot.connectionState == ConnectionState.waiting) {

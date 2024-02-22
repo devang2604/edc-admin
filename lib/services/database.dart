@@ -125,11 +125,11 @@ class DatabaseService {
           await registeredUserCollection.orderBy('created_at').get();
       final lastTicket = snapshot.docs.last;
       final lastTicketId = lastTicket.id;
-      final newTicketId = int.parse(lastTicketId) + 1;
+      final newTicketId = int.parse(lastTicketId) + 5;
       ticketData.ticketId = newTicketId.toString();
       ticketData.createdAt = Timestamp.now();
       FirebaseFirestore.instance
-          .collection("on_day_registration")
+          .collection("on_day_registration_24")
           .doc(ticketData.ticketId)
           .set(
             ticketData.toMap(),
